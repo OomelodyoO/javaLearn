@@ -1,13 +1,13 @@
 package win.zhangzhixing.list;
 
-public class ListStatistics {
+public class AddListStatistics {
     private Integer num;
 
     private Statistics first = new Statistics();
     private Statistics other = new Statistics();
     private Statistics last = new Statistics();
 
-    public ListStatistics(Integer num) {
+    public AddListStatistics(Integer num) {
         this.num = num;
     }
 

@@ -1,5 +1,5 @@
 package win.zhangzhixing.list;
 
-public enum ListEnum {
+public enum AddListEnum {
     FIRST, OTHER, LAST
 }

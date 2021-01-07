@@ -9,7 +9,7 @@ import java.util.List;
 public class AddApplication {
     public static void main(String[] args) throws InterruptedException {
         AddApplication addApplication = new AddApplication();
-        ArrayList<ListStatistics> list = new ArrayList<>();
+        List<AddListStatistics> list = new ArrayList<>();
         Integer wan = 10000;
         int[] arr = new int[]{
                 10 * wan
@@ -26,7 +26,7 @@ public class AddApplication {
                 , 50 * wan
                 , 100 * wan
         };
-        System.out.println("num       \tfirst                 \tother                 \tlast");
+        System.out.println("add       \tfirst                 \tother                 \tlast");
         System.out.println(
                 String.format(
                         "%s\t%s\t%s\t%s\t%s\t%s\t%s",
@@ -40,31 +40,31 @@ public class AddApplication {
                 )
         );
         for (int i : arr) {
-            ListStatistics listStatistics = new ListStatistics(i);
-            addApplication.testAdd(listStatistics);
-            list.add(listStatistics);
+            AddListStatistics addListStatistics = new AddListStatistics(i);
+            addApplication.testAdd(addListStatistics);
+            list.add(addListStatistics);
         }
         Thread.sleep(100);
     }
 
-    private void testAdd(ListStatistics listStatistics) {
-        add(listStatistics.getNum(), ListEnum.FIRST, listStatistics);
-        add(listStatistics.getNum(), ListEnum.OTHER, listStatistics);
-        add(listStatistics.getNum(), ListEnum.LAST, listStatistics);
+    private void testAdd(AddListStatistics addListStatistics) {
+        add(addListStatistics.getNum(), AddListEnum.FIRST, addListStatistics);
+        add(addListStatistics.getNum(), AddListEnum.OTHER, addListStatistics);
+        add(addListStatistics.getNum(), AddListEnum.LAST, addListStatistics);
         System.out.println(String.format(
                 "%s\t%s\t%s\t%s\t%s\t%s\t%s",
-                String.format("%-10s", listStatistics.getNum()),
-                String.format("%-10s", listStatistics.getFirst().getArray()),
-                String.format("%-10s", listStatistics.getFirst().getLinked()),
-                String.format("%-10s", listStatistics.getOther().getArray()),
-                String.format("%-10s", listStatistics.getOther().getLinked()),
-                String.format("%-10s", listStatistics.getLast().getArray()),
-                String.format("%-10s", listStatistics.getLast().getLinked())
+                String.format("%-10s", addListStatistics.getNum()),
+                String.format("%-10s", addListStatistics.getFirst().getArray()),
+                String.format("%-10s", addListStatistics.getFirst().getLinked()),
+                String.format("%-10s", addListStatistics.getOther().getArray()),
+                String.format("%-10s", addListStatistics.getOther().getLinked()),
+                String.format("%-10s", addListStatistics.getLast().getArray()),
+                String.format("%-10s", addListStatistics.getLast().getLinked())
         ));
     }
 
-    private void add(Integer num, ListEnum listEnum, ListStatistics listStatistics) {
-        if (listEnum.equals(ListEnum.FIRST)) {
+    private void add(Integer num, AddListEnum addListEnum, AddListStatistics addListStatistics) {
+        if (addListEnum.equals(AddListEnum.FIRST)) {
             // ArrayList插入
             StopWatch arrayListStopWatch = new StopWatch();
             List<Integer> arrayList = new ArrayList<>();
@@ -81,9 +81,9 @@ public class AddApplication {
                 linkedList.add(0, i);
             }
             linkedListStopWatch.stop();
-            listStatistics.getFirst().setArray(arrayListStopWatch.getTime());
-            listStatistics.getFirst().setLinked(linkedListStopWatch.getTime());
-        } else if (listEnum.equals(ListEnum.LAST)) {
+            addListStatistics.getFirst().setArray(arrayListStopWatch.getTime());
+            addListStatistics.getFirst().setLinked(linkedListStopWatch.getTime());
+        } else if (addListEnum.equals(AddListEnum.LAST)) {
             // ArrayList插入
             StopWatch arrayListStopWatch = new StopWatch();
             List<Integer> arrayList = new ArrayList<>();
@@ -100,8 +100,8 @@ public class AddApplication {
                 linkedList.add(i);
             }
             linkedListStopWatch.stop();
-            listStatistics.getLast().setArray(arrayListStopWatch.getTime());
-            listStatistics.getLast().setLinked(linkedListStopWatch.getTime());
+            addListStatistics.getLast().setArray(arrayListStopWatch.getTime());
+            addListStatistics.getLast().setLinked(linkedListStopWatch.getTime());
         } else {
             // ArrayList插入
             StopWatch arrayListStopWatch = new StopWatch();
@@ -119,8 +119,8 @@ public class AddApplication {
                 linkedList.add((int) Math.ceil((i / 2)), i);
             }
             linkedListStopWatch.stop();
-            listStatistics.getOther().setArray(arrayListStopWatch.getTime());
-            listStatistics.getOther().setLinked(linkedListStopWatch.getTime());
+            addListStatistics.getOther().setArray(arrayListStopWatch.getTime());
+            addListStatistics.getOther().setLinked(linkedListStopWatch.getTime());
         }
     }
 }
