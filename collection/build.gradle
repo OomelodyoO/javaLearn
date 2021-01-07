@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'win.zhangzhixing'
+version '0.0.1'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.11'
+}
+
+test {
+    useJUnitPlatform()
+}
